@@ -215,7 +215,7 @@ footer a:hover {
     margin: 0px;
 }
 
-.project-container p{
+.project-container p {
     margin-top: 0;
     margin-bottom: 20px;
 }
@@ -252,4 +252,65 @@ footer a:hover {
 
 .project a:hover {
     text-decoration: underline;
+}
+
+.activity-container h2 {
+    font-size: 50px;
+    background-image: linear-gradient(360deg, #87CEEB, #094a8b);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-top: 50px;
+    margin-bottom: 0px;
+    text-align: center;
+}
+
+.activity-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.activity-container h3 {
+    text-align: center;
+    font-size: 25px;
+}
+
+.activity-container img {
+    width: 400px;
+    height: auto;
+    border-radius: 10%;
+}
+
+.ffd-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.ityu-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.activity ul{
+    border: 5px solid white;
+    width: 600px;
+    font-size: 20px;
+}
+
+.ityu h3{
+    background-image: linear-gradient(90deg, #d3f129, #b5b7b8);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-top: 10px;
+}
+
+.ffd h3{
+    background-image: linear-gradient(90deg, #169ed4, #da3232);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }
