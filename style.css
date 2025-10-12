@@ -289,19 +289,19 @@ footer a:hover {
     margin-bottom: 20px;
 }
 
-.ityu-container{
+.ityu-container {
     display: flex;
     align-items: center;
     justify-content: space-around;
 }
 
-.activity ul{
+.activity ul {
     border: 5px solid white;
     width: 600px;
     font-size: 20px;
 }
 
-.ityu h3{
+.ityu h3 {
     background-image: linear-gradient(90deg, #d3f129, #b5b7b8);
     -webkit-background-clip: text;
     background-clip: text;
@@ -309,16 +309,16 @@ footer a:hover {
     margin-top: 10px;
 }
 
-.ffd h3{
+.ffd h3 {
     background-image: linear-gradient(90deg, #169ed4, #da3232);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
 }
 
-.contact-container h2{
+.contact-container h2 {
     font-size: 50px;
-    background-image: linear-gradient(360deg, #00ff73, #4d8b34);
+    background-image: linear-gradient(360deg, #3ab872, #206b03);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -344,34 +344,61 @@ footer a:hover {
     align-items: center;
 }
 
-form{
+form {
     width: 700px;
-    height: 450px;
+    height: 540px;
+}
+
+label {
+    font-size: 20px;
+    font-weight: bold;
 }
 
 input {
     width: 700px;
     height: 30px;
-    border-radius: 8%;
+    border: 1px solid #999999;
+    /* Viền mỏng, màu xám nhạt */
+    border-radius: 8px;
+    /* Đổi 8% sang 8px để bo góc đồng đều và đẹp hơn */
+    padding: 8px 10px;
+    /* Thêm padding để chữ không dính sát vào viền */
     background-color: #646161;
     margin-bottom: 10px;
+    margin-top: 5px;
+    color: white;
+    font-size: 20px;
 }
 
-textarea{
+textarea {
     height: 100px;
     width: 700px;
     background-color: #646161;
     margin-bottom: 25px;
+    color: white;
+    font-size: 20px;
+    margin-top: 5px;
+    border: 1px solid #999999;
+    /* Viền mỏng, màu xám nhạt */
+    border-radius: 8px;
+    /* Đổi 8% sang 8px để bo góc đồng đều và đẹp hơn */
+    padding: 8px 10px;
+    /* Thêm padding để chữ không dính sát vào viền */
 }
 
-button{
+button {
     width: 150px;
     height: 50px;
-    border-radius: 10%;
+    border: 1px solid #999999;
+    /* Viền mỏng, màu xám nhạt */
+    border-radius: 8px;
+    /* Đổi 8% sang 8px để bo góc đồng đều và đẹp hơn */
+    padding: 8px 10px;
+    /* Thêm padding để chữ không dính sát vào viền */
 }
 
-input::placeholder, textarea::placeholder {
-    color: white; /* Màu xanh dương */
+input::placeholder,
+textarea::placeholder {
+    color: white;
     opacity: 0.5;
 }
-
