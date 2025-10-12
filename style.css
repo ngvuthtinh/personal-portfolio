@@ -192,3 +192,64 @@ h2 {
 footer a:hover {
     text-decoration: underline;
 }
+
+/* Project.html */
+.project-container {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+}
+
+.project-container h2 {
+    font-size: 50px;
+    background-image: linear-gradient(360deg, #FF8C00, #8b3434);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-top: 50px;
+    margin-bottom: 0px;
+}
+
+.project-container h3 {
+    font-size: 70px;
+    margin: 0px;
+}
+
+.project-container p{
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.project {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 30px;
+}
+
+.project img {
+    width: 600px;
+    height: 600px;
+    border-radius: 10%;
+}
+
+.rock-paper-scissors {
+    display: flex;
+    flex-direction: column;
+    gap: 20px
+}
+
+.calculator {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.rock-paper-scissors a,
+.calculator a {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.project a:hover {
+    text-decoration: underline;
+}
