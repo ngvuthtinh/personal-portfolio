@@ -15,7 +15,7 @@ main {
     flex-grow: 1;
 }
 
-.navigation {
+header {
     background-color: #191919;
     height: 80px;
     display: flex;
@@ -172,10 +172,12 @@ a {
 }
 
 .experience-programming h2 {
+    font-size: 50px;
     background-image: linear-gradient(360deg, #FF8C00, #8b3434);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+    text-align: center;
 }
 
 footer p {
@@ -401,4 +403,33 @@ input::placeholder,
 textarea::placeholder {
     color: white;
     opacity: 0.5;
+}
+
+.resume h2 {
+    font-size: 50px;
+    background-image: linear-gradient(360deg, #e27070, #9c131a);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 0px;
+    text-align: center;
+}
+
+.resume {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.resume img {
+    width: 700px;
+    height: auto;
+}
+
+.resume p{
+    font-weight: bold;
+}
+
+.resume p :hover{
+    color: rgb(82, 82, 126);
 }
