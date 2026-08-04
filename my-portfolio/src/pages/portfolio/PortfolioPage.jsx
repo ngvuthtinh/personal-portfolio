@@ -105,14 +105,14 @@ export default function PortfolioPage({ skipIntro = false }) {
       {phase !== "completed" && (
         <div
           id="intro-screen"
-          className="fixed inset-0 z-40 flex flex-col items-center justify-center select-none overflow-hidden"
+          className="fixed inset-0 z-40 flex flex-col items-center justify-center select-none overflow-hidden px-4"
           style={{
             backgroundColor: "#F4F0EC",
             opacity: phase === "fading" ? 0 : 1,
             transition: phase === "fading" ? "opacity 0.4s ease-in-out" : "none",
           }}
         >
-          {/* Scene 3D Viewport chuẩn kích thước CardDemo (900px x 514px) */}
+          {/* Scene 3D Viewport Tự động co dãn chuẩn Responsive trên mọi màn hình */}
           <div
             ref={sceneRef}
             onMouseMove={handleMouseMove}
@@ -121,7 +121,7 @@ export default function PortfolioPage({ skipIntro = false }) {
               setIsHovered(false);
               setTilt({ rotateX: 0, rotateY: 0 });
             }}
-            className="w-[900px] max-w-[95vw] h-[514px] max-h-[70vh] z-10"
+            className="w-[900px] max-w-[92vw] h-[280px] sm:h-[400px] md:h-[514px] z-10"
             style={{ perspective: "2500px" }}
           >
             {/* Tilt Wrapper */}
@@ -152,27 +152,27 @@ export default function PortfolioPage({ skipIntro = false }) {
               >
                 {/* MẶT TRƯỚC: FONT GARAMOND CLASSICO SC */}
                 <div className="paper-texture absolute w-full h-full backface-hidden rounded-sm card-font">
-                  <div className="w-full h-full p-10 flex flex-col justify-between">
+                  <div className="w-full h-full p-4 sm:p-8 md:p-10 flex flex-col justify-between">
                     {/* Top Row */}
                     <div className="flex justify-between items-start ink-raised">
-                      <div className="text-[1.25rem] tracking-[0.1em] mt-1">096 314 9280</div>
+                      <div className="text-[0.8rem] sm:text-[1.0rem] md:text-[1.25rem] tracking-[0.1em] mt-1">096 314 9280</div>
                       <div className="text-right flex flex-col items-end">
-                        <div className="text-[1.3rem] tracking-[0.1em]">Software Engineering</div>
-                        <div className="text-[1.0rem] tracking-widest mt-1">Backend Architecture</div>
+                        <div className="text-[0.8rem] sm:text-[1.1rem] md:text-[1.3rem] tracking-[0.1em]">Software Engineering</div>
+                        <div className="text-[0.6rem] sm:text-[0.8rem] md:text-[1.0rem] tracking-widest mt-0.5 sm:mt-1">Backend Architecture</div>
                       </div>
                     </div>
 
                     {/* Center Row */}
-                    <div className="flex flex-col items-center justify-center ink-raised -mt-4">
-                      <h1 className="text-[2.4rem] md:text-[2.5rem] tracking-[0.15em] font-medium">Nguyen Vu Thanh Tinh</h1>
-                      <p className="mt-4 text-[1.2rem] md:text-[1.5rem] tracking-[0.1em]">Software Engineer</p>
+                    <div className="flex flex-col items-center justify-center ink-raised -mt-2 sm:-mt-4">
+                      <h1 className="text-[1.3rem] sm:text-[1.9rem] md:text-[2.5rem] tracking-[0.15em] font-medium text-center">Nguyen Vu Thanh Tinh</h1>
+                      <p className="mt-1 sm:mt-4 text-[0.85rem] sm:text-[1.2rem] md:text-[1.5rem] tracking-[0.1em]">Software Engineer</p>
                     </div>
 
                     {/* Bottom Row */}
-                    <div className="flex justify-center items-end pb-2 ink-raised">
-                      <p className="text-[1.05rem] tracking-[0.08em] text-center">
+                    <div className="flex justify-center items-end pb-1 sm:pb-2 ink-raised">
+                      <p className="text-[0.65rem] sm:text-[0.85rem] md:text-[1.05rem] tracking-[0.08em] text-center">
                         Ho Chi Minh City, VN 700000{" "}
-                        <span className="mx-2">Email</span> ngvuthtinh.work@gmail.com
+                        <span className="mx-1 sm:mx-2">Email</span> ngvuthtinh.work@gmail.com
                       </p>
                     </div>
                   </div>
@@ -183,14 +183,14 @@ export default function PortfolioPage({ skipIntro = false }) {
                   className="paper-texture absolute w-full h-full backface-hidden rounded-sm card-font"
                   style={{ transform: "rotateY(180deg)", backgroundColor: "#F4F0EC" }}
                 >
-                  <div className="w-full h-full p-12 flex flex-col items-center justify-center text-center">
-                    <h1 className="text-[2.8rem] md:text-[3.6rem] tracking-[0.15em] font-medium mb-4 text-[#111] ink-raised">
+                  <div className="w-full h-full p-6 sm:p-12 flex flex-col items-center justify-center text-center">
+                    <h1 className="text-[1.8rem] sm:text-[2.8rem] md:text-[3.6rem] tracking-[0.15em] font-medium mb-2 sm:mb-4 text-[#111] ink-raised">
                       Thanh Tinh
                     </h1>
-                    <p className="text-base md:text-xl italic tracking-widest text-gray-700 max-w-md">
+                    <p className="text-xs sm:text-base md:text-xl italic tracking-widest text-gray-700 max-w-md">
                       Crafting flawless digital architectures.
                     </p>
-                    <div className="w-16 h-[1px] bg-black mt-8 opacity-80" />
+                    <div className="w-12 sm:w-16 h-[1px] bg-black mt-4 sm:mt-8 opacity-80" />
                   </div>
                 </div>
               </div>
@@ -199,8 +199,8 @@ export default function PortfolioPage({ skipIntro = false }) {
 
           {/* Hint text cố định dưới thẻ */}
           {phase === "idle" && (
-            <div className="mt-12 z-20 px-4 text-center">
-              <p className="hint-text small-caps text-sm font-medium tracking-[0.25em] text-[#111]">
+            <div className="mt-8 sm:mt-12 z-20 px-4 text-center">
+              <p className="hint-text small-caps text-xs sm:text-sm font-medium tracking-[0.25em] text-[#111]">
                 [ Click the card to unveil ]
               </p>
             </div>
