@@ -48,7 +48,7 @@ export default function Activities() {
                 {act.title}
               </h3>
               <p className="italic text-[#D4AF37] font-medium mt-2">{act.role}</p>
-              <p className="text-lg text-gray-800 mt-3 max-w-3xl mx-auto">{act.description}</p>
+              <p className="text-[1.15rem] leading-[1.7] text-gray-800 mt-3 max-w-3xl mx-auto font-normal">{act.description}</p>
               {i < activities.length - 1 && (
                 <div className="w-20 h-[1px] bg-[#D4AF37]/40 mx-auto mt-12" />
               )}

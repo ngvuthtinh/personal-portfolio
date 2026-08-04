@@ -110,7 +110,7 @@ export default function CardDemo() {
           <div className="flex flex-col items-center justify-center ink-raised w-full h-full p-10 md:p-16">
             <h2 className="text-2xl small-caps tracking-bateman border-b border-black pb-2 mb-8 inline-block">Technical Expertise</h2>
             <div className="w-full max-w-3xl grid grid-cols-2 gap-x-12 gap-y-6 text-left px-8">
-              {[["Languages", "JavaScript, TypeScript, Python, C++, SQL"], ["Frameworks", "React.js, Next.js, Express, FastAPI, Tailwind"], ["Infrastructure", "Docker, AWS (EC2, S3), Nginx, CI/CD"], ["Databases", "PostgreSQL, MySQL, MongoDB, Redis"]].map(([title, content]) => (
+              {[["Languages", "JavaScript, TypeScript, Python, Java"], ["Frameworks", "Node.js, Express.js, Sails.js, React.js, Expo, REST API"], ["Databases & Cloud", "PostgreSQL, MySQL, MongoDB, Redis, Firebase, Vercel, Docker"], ["Developer Tools", "Git, GitHub, Postman, NPM"]].map(([title, content]) => (
                 <div key={title}>
                   <p className="small-caps tracking-bateman text-lg font-bold mb-2 border-b border-gray-300 inline-block">{title}</p>
                   <p className="text-gray-800 text-lg">{content}</p>

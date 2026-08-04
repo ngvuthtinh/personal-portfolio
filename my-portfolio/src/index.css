@@ -25,6 +25,26 @@
     padding: 0;
     overflow-x: hidden;
   }
+
+  /* Header / Tiêu đề trang Portfolio: EB Garamond (Small Caps, Đậm rõ nét) */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'EB Garamond', serif;
+    font-variant: small-caps;
+    color: var(--ink-color);
+  }
+
+  /* Body / Nội dung bài viết: EB Garamond Medium 500 (size 18px-20px, line-height 1.7) đậm rõ nét */
+  p {
+    font-family: 'EB Garamond', serif;
+    font-weight: 500;
+    line-height: 1.7;
+    color: var(--ink-color);
+  }
 }
 
 @layer utilities {
@@ -60,6 +80,49 @@
   .backface-hidden {
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
+  }
+
+  /* Khung viền đôi mô phỏng thiệp cao cấp (Patrick Bateman Luxury Stationery) */
+  .stationery-frame {
+    border: 1px solid rgba(17, 17, 17, 0.9);
+    outline: 1px solid rgba(17, 17, 17, 0.9);
+    outline-offset: -6px;
+    background-color: #F8F5F1;
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.08);
+  }
+
+  /* Hiệu ứng gạch chân khi hover cho contact link */
+  .contact-link {
+    position: relative;
+    transition: color 0.3s ease;
+  }
+
+  .contact-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1.5px;
+    bottom: -1px;
+    left: 0;
+    background-color: #111111;
+    transition: width 0.3s ease;
+  }
+
+  .contact-link:hover::after {
+    width: 100%;
+  }
+
+  /* Nút Call to Action (Tải CV) */
+  .btn-bateman {
+    background-color: transparent;
+    color: #111111;
+    border: none;
+    transition: all 0.3s ease;
+  }
+
+  .btn-bateman:hover {
+    color: #D4AF37;
+    background-color: transparent;
   }
 }
 

@@ -55,7 +55,7 @@ function ProjectCard({ project }) {
           <Code2 className="w-4 h-4 text-gray-500 inline shrink-0" />
           {tags}
         </p>
-        <p className="text-lg leading-relaxed text-gray-800 mb-6">{description}</p>
+        <p className="text-[1.15rem] leading-[1.7] text-gray-800 mb-6 font-normal">{description}</p>
         <a
           href={link}
           className="inline-flex items-center gap-2 w-max text-sm small-caps tracking-widest border border-black px-6 py-3 hover:bg-black hover:text-white transition-colors group"

@@ -5,6 +5,7 @@ import Navbar from "./Navbar";
 import Hero from "./Hero";
 import About from "./About";
 import Projects from "./Projects";
+import Education from "./Education";
 import TechStack from "./TechStack";
 import Activities from "./Activities";
 import Contact from "./Contact";
@@ -94,6 +95,7 @@ export default function PortfolioPage({ skipIntro = false }) {
         <Hero />
         <About />
         <Projects />
+        <Education />
         <TechStack />
         <Activities />
         <Contact />
@@ -142,8 +144,8 @@ export default function PortfolioPage({ skipIntro = false }) {
                   transition: phase === "flipping"
                     ? "transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1)"
                     : phase === "scaling" || phase === "fading"
-                    ? "transform 0.95s cubic-bezier(0.76, 0, 0.24, 1)"
-                    : "transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1)",
+                      ? "transform 0.95s cubic-bezier(0.76, 0, 0.24, 1)"
+                      : "transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1)",
                   backgroundColor: "#F4F0EC",
                   opacity: phase === "fading" ? 0 : 1,
                 }}
@@ -155,20 +157,20 @@ export default function PortfolioPage({ skipIntro = false }) {
                     <div className="flex justify-between items-start ink-raised">
                       <div className="text-[1.25rem] tracking-[0.1em] mt-1">096 314 9280</div>
                       <div className="text-right flex flex-col items-end">
-                        <div className="text-[1.4rem] tracking-[0.1em]">Software Engineering</div>
-                        <div className="text-[0.8rem] tracking-widest mt-1">Backend Architecture</div>
+                        <div className="text-[1.3rem] tracking-[0.1em]">Software Engineering</div>
+                        <div className="text-[1.0rem] tracking-widest mt-1">Backend Architecture</div>
                       </div>
                     </div>
 
                     {/* Center Row */}
                     <div className="flex flex-col items-center justify-center ink-raised -mt-4">
-                      <h1 className="text-[2.4rem] md:text-[2.7rem] tracking-[0.15em] font-medium">Nguyen Vu Thanh TINH</h1>
-                      <p className="mt-4 text-[1.2rem] md:text-[1.3rem] tracking-[0.1em]">Software Engineer</p>
+                      <h1 className="text-[2.4rem] md:text-[2.5rem] tracking-[0.15em] font-medium">Nguyen Vu Thanh Tinh</h1>
+                      <p className="mt-4 text-[1.2rem] md:text-[1.5rem] tracking-[0.1em]">Software Engineer</p>
                     </div>
 
                     {/* Bottom Row */}
                     <div className="flex justify-center items-end pb-2 ink-raised">
-                      <p className="text-[0.95rem] tracking-[0.08em] text-center">
+                      <p className="text-[1.05rem] tracking-[0.08em] text-center">
                         Ho Chi Minh City, VN 700000{" "}
                         <span className="mx-2">Email</span> ngvuthtinh.work@gmail.com
                       </p>
@@ -176,7 +178,7 @@ export default function PortfolioPage({ skipIntro = false }) {
                   </div>
                 </div>
 
-                {/* MẶT SAU: KHÔNG CÓ NAVBAR HEADER, CHỈ CÓ NỘI DUNG NGHỆ THUẬT */}
+                {/* MẶT SAU: NỘI DUNG TỐI GIẢN CHUYỂN CẢNH */}
                 <div
                   className="paper-texture absolute w-full h-full backface-hidden rounded-sm card-font"
                   style={{ transform: "rotateY(180deg)", backgroundColor: "#F4F0EC" }}
