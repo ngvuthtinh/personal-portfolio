@@ -8,7 +8,7 @@ export default function Education() {
         <SectionTitle index="04">Education</SectionTitle>
         <Reveal className="edu-row">
           <div className="edu-head">
-            <img className="edu-logo" src={edu.logo} alt="International University logo" />
+            <img className="edu-logo" src={edu.logo} alt="International University logo" width="64" height="64" loading="lazy" />
             <h3 className="edu-school">{edu.school}</h3>
           </div>
           <p className="edu-period">{edu.period}</p>

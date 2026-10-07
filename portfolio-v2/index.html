@@ -4,8 +4,44 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Nguyen Vu Thanh Tinh — Software Engineer building reliable, real-time web systems." />
     <title>Nguyen Vu Thanh Tinh — Software Engineer</title>
+    <meta name="description" content="Nguyen Vu Thanh Tinh — Software Engineer building reliable, real-time web systems." />
+    <meta name="theme-color" content="#04050c" />
+
+    <!-- Link previews (LinkedIn, Zalo, Slack, Facebook…). Set VITE_SITE_URL in .env to the deployed domain. -->
+    <link rel="canonical" href="%VITE_SITE_URL%/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Nguyen Vu Thanh Tinh" />
+    <meta property="og:title" content="Nguyen Vu Thanh Tinh — Software Engineer" />
+    <meta property="og:description" content="Backend and real-time systems, from APIs to live collaboration." />
+    <meta property="og:url" content="%VITE_SITE_URL%/" />
+    <meta property="og:image" content="%VITE_SITE_URL%/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Nguyen Vu Thanh Tinh, Software Engineer" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Nguyen Vu Thanh Tinh — Software Engineer" />
+    <meta name="twitter:description" content="Backend and real-time systems, from APIs to live collaboration." />
+    <meta name="twitter:image" content="%VITE_SITE_URL%/og-image.jpg" />
+
+    <script>
+      // Entrance animations only start hidden under html.js. If animation frames are not
+      // being produced (throttled tab, battery saver, embedded pane), drop the class so
+      // content is shown immediately instead of waiting on stalled animations.
+      (function () {
+        var root = document.documentElement;
+        root.classList.add("js");
+        var frames = 0;
+        requestAnimationFrame(function () {
+          frames++;
+          requestAnimationFrame(function () { frames++; });
+        });
+        setTimeout(function () {
+          if (frames < 2) root.classList.remove("js");
+        }, 1500);
+      })();
+    </script>
+    <link rel="preload" as="image" href="/avatar.webp" type="image/webp" fetchpriority="high" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Kaushan+Script&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />

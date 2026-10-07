@@ -1,64 +1,55 @@
-import { motion } from "framer-motion";
 import { FiDownload, FiArrowDown } from "react-icons/fi";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
 import { profile } from "../data";
 
-const fade = (delay) => ({
-  initial: { opacity: 0, y: 24 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.8, delay, ease: [0.22, 1, 0.36, 1] },
-});
+// Entrance uses pure CSS keyframes (see .enter in index.css): content is never stuck
+// hidden if JS animation frames are throttled or delayed.
+const enter = (delay) => ({ className: "enter", style: { "--d": `${delay}s` } });
 
 export default function Hero() {
   return (
     <section id="top" className="hero">
       <div className="container hero-inner">
         <div className="hero-text">
-          <motion.h1 {...fade(0.2)}>
+          <h1 {...enter(0.1)}>
             Hi, I'm<br />
             <span className="grad-text hero-name">{profile.short}</span>
-          </motion.h1>
-          <motion.p className="hero-role" {...fade(0.3)}>
+          </h1>
+          <p className="hero-role enter" style={{ "--d": "0.2s" }}>
             {profile.title}
-          </motion.p>
-          <motion.p className="hero-tagline" {...fade(0.4)}>
+          </p>
+          <p className="hero-tagline enter" style={{ "--d": "0.3s" }}>
             {profile.tagline}
-          </motion.p>
-          <motion.p className="hero-summary" {...fade(0.5)}>
+          </p>
+          <p className="hero-summary enter" style={{ "--d": "0.4s" }}>
             {profile.summary}
-          </motion.p>
-          <motion.div className="hero-cta" {...fade(0.6)}>
+          </p>
+          <div className="hero-cta enter" style={{ "--d": "0.5s" }}>
             <a href={profile.cv} download className="btn btn-primary">
               <FiDownload /> Download CV
             </a>
             <a href="#work" className="btn">
               View work <FiArrowDown />
             </a>
-          </motion.div>
-          <motion.div className="hero-social" {...fade(0.7)}>
+          </div>
+          <div className="hero-social enter" style={{ "--d": "0.6s" }}>
             <a href={profile.github} target="_blank" rel="noreferrer" aria-label="GitHub"><FaGithub /></a>
             <a href={profile.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn"><FaLinkedin /></a>
             <a href={`mailto:${profile.email}`} aria-label="Email"><HiOutlineMail /></a>
-          </motion.div>
+          </div>
         </div>
 
-        <motion.div
-          className="hero-visual"
-          initial={{ opacity: 0, scale: 0.85 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.4, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-        >
+        <div className="hero-visual enter-scale" style={{ "--d": "0.15s" }}>
           <div className="avatar-orbit">
             <span className="ring ring-1"><i /></span>
             <span className="ring ring-2"><i /></span>
             <div className="sun">
-              <img src="/avatar.png" alt={profile.name} />
+              <img src="/avatar.webp" alt={profile.name} width="450" height="450" fetchPriority="high" />
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
-
     </section>
   );
 }

@@ -59,7 +59,7 @@ export const projects = [
 ];
 
 export const education = {
-  logo: "/iu-logo.png",
+  logo: "/iu-logo.webp",
   school: "International University",
   degree: "Bachelor of Science in Computer Science · Vietnam National University HCMC",
   period: "Sep 2023 — Sep 2027",
@@ -78,7 +78,8 @@ export const awards = [
     title: "Second Runner-Up — GDGoC Hackathon Vietnam 2026",
     tags: ["Agentic AI", "RAG", "IoT", "2026"],
     desc: "Built SalinAI, a multi-agent AI system that turns farm sensor data into irrigation decisions, and pitched it at the national finals.",
-    image: "/gdgoc-hackathon-2026.jpg",
+    image: "/gdgoc-hackathon-2026.webp",
+    thumb: "/gdgoc-hackathon-2026-thumb.webp",
     caption: "Second Runner-Up at the GDGoC Hackathon Vietnam 2026 finals",
     link: "#work",
   },

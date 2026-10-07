@@ -35,7 +35,7 @@ export default function Awards() {
               )}
               {a.image && (
                 <button type="button" className="award-thumb" onClick={() => setPhoto(a)} aria-label="View photo">
-                  <img src={a.image} alt={a.caption} loading="lazy" />
+                  <img src={a.thumb ?? a.image} alt={a.caption} width="480" height="570" loading="lazy" decoding="async" />
                 </button>
               )}
             </Reveal>

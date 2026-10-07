@@ -1,15 +1,47 @@
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 
-export default function Reveal({ children, delay = 0, className = "", as = "div", ...rest }) {
-  const Tag = motion[as];
+// Scroll reveal driven by IntersectionObserver + CSS transitions (no JS animation frames).
+// A timer fallback guarantees content never stays hidden if the observer never fires.
+const FALLBACK_MS = 3000;
+
+export default function Reveal({ children, delay = 0, className = "", as: Tag = "div", style, ...rest }) {
+  const ref = useRef(null);
+  const [shown, setShown] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || typeof IntersectionObserver === "undefined") {
+      setShown(true);
+      return;
+    }
+    let observed = false;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        observed = true;
+        if (entry.isIntersecting) {
+          setShown(true);
+          io.disconnect();
+        }
+      },
+      { rootMargin: "0px 0px -80px 0px" }
+    );
+    io.observe(el);
+    // The observer always reports once right after observe(); if it hasn't, it is stalled
+    const timer = setTimeout(() => {
+      if (!observed) setShown(true);
+    }, FALLBACK_MS);
+    return () => {
+      io.disconnect();
+      clearTimeout(timer);
+    };
+  }, []);
+
   return (
     <Tag
-      className={className}
+      ref={ref}
+      className={`reveal ${shown ? "in" : ""} ${className}`}
+      style={{ ...style, "--d": `${delay}s` }}
       {...rest}
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}
     >
       {children}
     </Tag>

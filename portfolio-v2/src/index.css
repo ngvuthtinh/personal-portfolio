@@ -143,6 +143,11 @@ body { background: radial-gradient(ellipse at 50% 0%, #0b0d1f 0%, var(--bg) 60%)
 .nav-links { display: flex; gap: 6px; font-size: 0.88rem; color: var(--muted); }
 .nav-links a { padding: 6px 12px; border-radius: 8px; transition: color 0.2s, background 0.2s; }
 .nav-links a:hover { color: var(--text); background: var(--surface-hover); }
+.nav-actions { display: flex; align-items: center; gap: 8px; }
+.nav-toggle {
+  display: none; place-items: center; width: 36px; height: 36px; border-radius: 10px;
+  border: 1px solid var(--line); background: var(--surface); font-size: 1.15rem; color: var(--text);
+}
 
 /* ============ BUTTONS ============ */
 .btn {
@@ -246,7 +251,7 @@ body { background: radial-gradient(ellipse at 50% 0%, #0b0d1f 0%, var(--bg) 60%)
 .award-arrow { grid-column: 3; grid-row: 1; align-self: end; justify-self: center; font-size: 1.4rem; color: var(--muted); transition: color 0.25s, transform 0.25s; }
 .award-row:hover .award-arrow { color: var(--text); transform: translateX(6px); }
 .award-thumb { grid-column: 4; grid-row: 1; display: block; width: 100%; overflow: hidden; border-radius: 10px; border: 1px solid var(--line); cursor: zoom-in; }
-.award-thumb img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 55%; filter: saturate(0.85); transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), filter 0.3s; }
+.award-thumb img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 55%; filter: saturate(0.85); transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), filter 0.3s; }
 .award-row:hover .award-thumb img { transform: scale(1.06); filter: saturate(1); }
 .pcard-award {
   align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; margin: 4px 0 8px;
@@ -260,7 +265,7 @@ body { background: radial-gradient(ellipse at 50% 0%, #0b0d1f 0%, var(--bg) 60%)
   position: relative; display: flex; flex-direction: column; overflow: hidden;
   padding: 32px; border-radius: 22px;
   border: 1px solid var(--line); background: var(--surface);
-  transition: border-color 0.3s, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: border-color 0.3s, opacity 0.7s, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .pcard::before { /* cursor spotlight */
   content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity 0.3s;
@@ -320,7 +325,17 @@ body { background: radial-gradient(ellipse at 50% 0%, #0b0d1f 0%, var(--bg) 60%)
 
 /* ============ MOBILE ============ */
 @media (max-width: 860px) {
-  .nav-links { display: none; }
+  .nav-toggle { display: grid; }
+  .nav-links {
+    position: absolute; top: 100%; left: 0; right: 0;
+    flex-direction: column; gap: 2px; padding: 10px 20px 18px;
+    background: rgba(4, 5, 12, 0.96); border-bottom: 1px solid var(--line);
+    font-size: 1rem;
+    opacity: 0; visibility: hidden; transform: translateY(-8px);
+    transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
+  }
+  .nav-links a { padding: 12px 10px; }
+  .nav.is-open .nav-links { opacity: 1; visibility: visible; transform: none; }
   .hero { padding: 48px 0 56px; }
   .hero-inner { grid-template-columns: 1fr; gap: 44px; }
   .hero-visual { order: -1; }
@@ -347,3 +362,21 @@ body { background: radial-gradient(ellipse at 50% 0%, #0b0d1f 0%, var(--bg) 60%)
   .ring, .sun { animation: none; }
 }
 .hero-name { white-space: nowrap; }
+
+/* ============ ENTRANCE + REVEAL (pure CSS, no JS animation frames) ============ */
+@keyframes enter-up { from { opacity: 0; transform: translateY(24px); } }
+@keyframes enter-scale { from { opacity: 0; transform: scale(0.88); } }
+/* Content is visible by default; it only starts hidden under html.js (set in index.html
+   once animation frames are confirmed to run). */
+.js .enter { animation: enter-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) var(--d, 0s) both; }
+.js .enter-scale { animation: enter-scale 1.2s cubic-bezier(0.22, 1, 0.36, 1) var(--d, 0s) both; }
+/* :where() keeps specificity at zero so component hover transforms still win */
+:where(.js .reveal) {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1) var(--d, 0s), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) var(--d, 0s);
+}
+:where(.js .reveal.in) { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .js .enter, .js .enter-scale { animation: none; }
+  :where(.js .reveal) { opacity: 1; transform: none; transition: none; }
+}
