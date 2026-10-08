@@ -1,15 +1,26 @@
-import { lazy, Suspense, useRef } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { useInView } from "framer-motion";
 import { FiMove } from "react-icons/fi";
 import Reveal, { SectionTitle } from "./Reveal";
 import { categories } from "./techOrbits";
 
-const TechUniverse = lazy(() => import("./TechUniverse"));
+const loadUniverse = () => import("./TechUniverse");
+const TechUniverse = lazy(loadUniverse);
 
 
 export default function Skills() {
   const stage = useRef(null);
-  const near = useInView(stage, { margin: "200px" });
+  const near = useInView(stage, { margin: "800px" });
+  const [prefetched, setPrefetched] = useState(false);
+
+  // Fetch and mount the 3D scene in the background once the page is idle, so it is
+  // ready before the visitor scrolls down. It stays paused (no rendering) while off-screen.
+  useEffect(() => {
+    const idle = window.requestIdleCallback ?? ((cb) => setTimeout(cb, 1500));
+    const cancel = window.cancelIdleCallback ?? clearTimeout;
+    const id = idle(() => loadUniverse().then(() => setPrefetched(true)), { timeout: 4000 });
+    return () => cancel(id);
+  }, []);
   const visible = useInView(stage);
 
   return (
@@ -19,14 +30,16 @@ export default function Skills() {
         <div className="tech">
           <Reveal className="tech-stage">
             <div ref={stage} className="tech-canvas">
-              {near && (
+              {(near || prefetched) && (
                 <Suspense fallback={<div className="tech-loading">Loading universe…</div>}>
                   <TechUniverse active={visible} />
                 </Suspense>
               )}
             </div>
             <p className="tech-hint">
-              <FiMove /> Drag to rotate · scroll or pinch to zoom · hover a planet to pause
+              <FiMove />
+              <span className="hint-desktop">Drag to rotate · scroll to zoom · hover a planet to pause</span>
+              <span className="hint-touch">Swipe sideways to rotate · use + / − to zoom</span>
             </p>
           </Reveal>
 

@@ -1,12 +1,15 @@
-import { useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { FiMinus, FiPlus, FiRotateCcw } from "react-icons/fi";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { OrbitControls, Stars } from "@react-three/drei";
 import * as THREE from "three";
 import { orbits } from "./techOrbits";
 
 const SUN_RADIUS = 1.25;
 const START = new THREE.Vector3(0, 7, 12.5);
+
+// Narrow (portrait) frames need the camera further back so the outer orbits fit
+const startFor = (aspect) => START.clone().multiplyScalar(aspect < 0.9 ? 1.6 : aspect < 1.3 ? 1.25 : 1);
 const MIN_DIST = 5;
 const MAX_DIST = 24;
 const planets = orbits.flatMap((o, oi) => o.planets.map((p, i) => ({ ...p, oi, i, count: o.planets.length })));
@@ -174,6 +177,39 @@ function Projector({ anchors, badges }) {
   return null;
 }
 
+// OrbitControls sets touch-action: none, which traps one-finger vertical swipes on phones.
+// pan-y hands vertical swipes back to the page (scroll) while horizontal swipes still rotate.
+function TouchScroll() {
+  const controls = useThree((s) => s.controls);
+  useEffect(() => {
+    if (controls) controls.domElement.style.touchAction = "pan-y";
+  }, [controls]);
+  return null;
+}
+
+// Compile shaders while the scene is still off-screen so the first visible frame doesn't stutter
+function Precompile() {
+  const { gl, scene, camera } = useThree();
+  useEffect(() => {
+    gl.compile(scene, camera);
+  }, [gl, scene, camera]);
+  return null;
+}
+
+// Re-frames the camera whenever the canvas aspect ratio class changes (e.g. phone rotation)
+function FitCamera() {
+  const controls = useThree((s) => s.controls);
+  const aspect = useThree((s) => s.size.width / s.size.height);
+  const bucket = aspect < 0.9 ? 0 : aspect < 1.3 ? 1 : 2;
+  useEffect(() => {
+    if (!controls) return;
+    controls.object.position.copy(startFor(aspect));
+    controls.update();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [controls, bucket]);
+  return null;
+}
+
 export default function TechUniverse({ active = true }) {
   const paused = useRef(false);
   const anchors = useRef({});
@@ -191,7 +227,8 @@ export default function TechUniverse({ active = true }) {
   const reset = () => {
     const c = controls.current;
     if (!c) return;
-    c.object.position.copy(START);
+    const { clientWidth: w, clientHeight: h } = c.domElement;
+    c.object.position.copy(startFor(w / h));
     c.update();
   };
 
@@ -199,7 +236,7 @@ export default function TechUniverse({ active = true }) {
     <div className="tech-universe">
       <Canvas
         camera={{ position: START.toArray(), fov: 45 }}
-        dpr={[1, 2]}
+        dpr={[1, 1.5]}
         frameloop={active ? "always" : "never"}
         gl={{ antialias: true, alpha: true }}
       >
@@ -210,8 +247,12 @@ export default function TechUniverse({ active = true }) {
           <Orbit key={oi} orbit={o} oi={oi} paused={paused} anchors={anchors} />
         ))}
         <Projector anchors={anchors} badges={badges} />
+        <TouchScroll />
+        <FitCamera />
+        <Precompile />
         <OrbitControls
           ref={controls}
+          makeDefault
           enablePan={false}
           enableZoom
           zoomSpeed={0.6}

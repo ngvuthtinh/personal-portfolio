@@ -8,7 +8,7 @@ export default function Starfield() {
     const canvas = ref.current;
     const ctx = canvas.getContext("2d");
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
     let w, h, stars, raf;
     let shooting = null;
 

@@ -66,7 +66,7 @@ body { background: radial-gradient(ellipse at 50% 0%, #0b0d1f 0%, var(--bg) 60%)
 @keyframes spin { to { transform: rotate(360deg); } }
 
 /* ============ TECH STACK 3D ============ */
-.tech { display: grid; gap: 36px; }
+.tech { display: grid; grid-template-columns: minmax(0, 1fr); gap: 36px; }
 .tech-stage { position: relative; }
 .tech-canvas {
   height: 600px; border-radius: 28px; overflow: hidden; cursor: grab;
@@ -75,6 +75,8 @@ body { background: radial-gradient(ellipse at 50% 0%, #0b0d1f 0%, var(--bg) 60%)
 }
 .tech-canvas:active { cursor: grabbing; }
 .tech-loading { height: 100%; display: grid; place-items: center; font-family: var(--mono); font-size: 0.8rem; color: var(--muted); }
+.hint-touch { display: none; }
+@media (hover: none) and (pointer: coarse) { .hint-desktop { display: none; } .hint-touch { display: inline; } }
 .tech-hint { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 14px; font-family: var(--mono); font-size: 0.75rem; color: var(--muted); }
 .tech-universe { position: relative; width: 100%; height: 100%; isolation: isolate; }
 .zoom-controls {
@@ -106,7 +108,8 @@ body { background: radial-gradient(ellipse at 50% 0%, #0b0d1f 0%, var(--bg) 60%)
 }
 .planet3d:hover { transform: scale(1.15); box-shadow: 0 0 28px var(--c); }
 .planet3d:hover span { opacity: 1; }
-.tech-legend { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px 32px; }
+.tech-legend { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 20px 24px; }
+.tech-legend > * { min-width: 0; }
 .legend-group { padding: 20px 22px; border: 1px solid var(--line); background: var(--surface); border-radius: 18px; backdrop-filter: blur(6px); }
 .legend-label em { margin-left: auto; font-style: normal; font-size: 0.68rem; color: rgba(255, 255, 255, 0.3); }
 .legend-label { display: flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 0.74rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
@@ -227,6 +230,7 @@ body { background: radial-gradient(ellipse at 50% 0%, #0b0d1f 0%, var(--bg) 60%)
 }
 .edu-head { display: flex; align-items: center; gap: 20px; }
 .edu-logo {
+  height: auto; object-fit: contain; flex-shrink: 0;
   width: 64px; aspect-ratio: 1; border-radius: 50%; background: #fff; padding: 2px; flex: none;
   box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.08), 0 0 24px rgba(103, 232, 249, 0.18);
 }
@@ -260,7 +264,8 @@ body { background: radial-gradient(ellipse at 50% 0%, #0b0d1f 0%, var(--bg) 60%)
 }
 
 /* Projects */
-.projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 24px; }
+.projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 24px; }
+.projects > * { min-width: 0; }
 .pcard {
   position: relative; display: flex; flex-direction: column; overflow: hidden;
   padding: 32px; border-radius: 22px;
@@ -274,8 +279,8 @@ body { background: radial-gradient(ellipse at 50% 0%, #0b0d1f 0%, var(--bg) 60%)
 .pcard:hover { transform: translateY(-4px); border-color: rgba(167, 139, 250, 0.45); }
 .pcard:hover::before { opacity: 1; }
 .pcard > * { position: relative; }
-.pcard-head { display: flex; justify-content: space-between; gap: 12px; align-items: center; }
-.pcard-kind {
+.pcard-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 12px; align-items: center; }
+.pcard-kind { white-space: nowrap;
   font-family: var(--mono); font-size: 0.72rem; color: var(--a2);
   padding: 3px 10px; border-radius: 999px; background: rgba(103, 232, 249, 0.1);
 }
@@ -290,7 +295,7 @@ body { background: radial-gradient(ellipse at 50% 0%, #0b0d1f 0%, var(--bg) 60%)
 .pcard-link:hover svg { transform: translate(2px, -2px); }
 
 /* Skills */
-.skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+.skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 20px; }
 .skill-group { padding: 24px; border: 1px solid var(--line); background: var(--surface); border-radius: 18px; }
 .skill-group h3 { font-weight: 600; font-size: 1rem; letter-spacing: -0.01em; }
 .skill-group .chips { margin-top: 16px; }
@@ -349,7 +354,7 @@ body { background: radial-gradient(ellipse at 50% 0%, #0b0d1f 0%, var(--bg) 60%)
   .award-thumb { grid-column: 2; grid-row: 2; max-width: 260px; }
   .edu-row { grid-template-columns: 1fr; padding-left: 20px; }
   .edu-period { grid-row: 1; padding: 0 0 14px; }
-  .edu-logo { width: 48px; }
+  .edu-logo { width: 48px; height: 48px; }
   .edu-head { gap: 14px; }
   .job-body { padding: 22px; }
   .projects { grid-template-columns: 1fr; }
